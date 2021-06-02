@@ -1,0 +1,46 @@
+
+
+:host {
+  position: relative;
+  display: block;
+  padding: 8px 16px;
+
+  &.is-close-icon {
+    padding-right: 40px;
+  }
+
+  &.error {
+    background-color: var(--snackbar-error);
+  }
+
+  &.warning {
+    background-color: var(--snackbar-warning);
+  }
+
+  &.info {
+    background-color: var(--snackbar-info);
+  }
+
+  &.success {
+    background-color: var(--snackbar-success);
+  }
+}
+
+.snackbar__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  padding: 12px;
+  cursor: pointer;
+  transition: 0.2s all ease-in-out;
+
+  &:hover {
+    opacity: .6;
+  }
+}
+
+.snackbar__icon {
+  width: 10px;
+  fill: inherit;
+}
