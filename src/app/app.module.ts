@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SnackbarModule } from './snackbar/snackbar.module';
+import { ToastModule } from './toast/toast.module';
 
 @NgModule({
   declarations: [
@@ -14,10 +14,7 @@ import { SnackbarModule } from './snackbar/snackbar.module';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    SnackbarModule.forRoot({
-      message: 'Something went wrong',
-      duration: 0,
-    })
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

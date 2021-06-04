@@ -7,8 +7,8 @@ import {
   AnimationTriggerMetadata,
 } from '@angular/animations';
 
-export const snackbarAnimations: { readonly snackBarState: AnimationTriggerMetadata } = {
-  snackBarState: trigger('state', [
+export const toastAnimations: { readonly toastState: AnimationTriggerMetadata } = {
+  toastState: trigger('state', [
     state('void, hidden', style({
       transform: 'translateY(10px)',
       opacity: 0,

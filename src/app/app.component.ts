@@ -1,8 +1,8 @@
 import { Component, AfterViewInit, TemplateRef, ViewChild } from '@angular/core';
-import { SnackbarCustomComponent } from './snackbar-custom/snackbar-custom.component';
-import { SnackbarComponent } from './snackbar/components';
-import { SnackbarType } from './snackbar/shared/snackbar.model';
-import { SnackbarService } from './snackbar/shared/snackbar.service';
+import { ToastCustomComponent } from './toast-custom/toast-custom.component';
+import { ToastComponent } from './toast/components';
+import { ToastType } from './toast/shared/toast.model';
+import { ToastService } from './toast/shared/toast.service';
 
 @Component({
   selector: 'app-root',
@@ -10,27 +10,27 @@ import { SnackbarService } from './snackbar/shared/snackbar.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild('custom') templateSnackbar?: TemplateRef<any>;
-  title = 'snackbar-app';
+  @ViewChild('custom') Toast?: TemplateRef<any>;
+  title = 'toast-app';
 
-  constructor(public snackbarService: SnackbarService) {}
+  constructor(public toastService: ToastService) {}
 
   ngAfterViewInit() {
     this.open('my new toast');
   }
 
   open(message: string): void {
-    this.snackbarService.open({
+    this.toastService.open({
       type: 'success',
       message
     });
   }
 
   addTemplate(message: string): void {
-    this.snackbarService.open({
+    this.toastService.open({
       message,
-      type: SnackbarType.WARNING,
-      component: SnackbarCustomComponent,
+      type: ToastType.WARNING,
+      component: ToastCustomComponent,
       metadata: {
         title: 'title',
       }
@@ -38,12 +38,12 @@ export class AppComponent implements AfterViewInit {
   }
 
   close(): void {
-    this.snackbarService.close();
+    this.toastService.close();
   }
 }
 
 @Component({
-  selector: 'app-snackbar-custom2',
-  template: '<div>My custom snackbar2</div>',
+  selector: 'app-toast-custom2',
+  template: '<div>My custom toast2</div>',
 })
-export class CustomSnackbarComponent extends SnackbarComponent {}
+export class TestToastComponent extends ToastComponent {}

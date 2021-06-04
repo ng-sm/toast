@@ -1,12 +1,12 @@
 {{ config?.message }}
 
 <span
-  class="snackbar__close"
-  *ngIf="!config.isCloseIconHidden"
+  class="toast__close"
+  *ngIf="!config?.isCloseIconHidden"
   (click)="close()"
 >
   <svg
-    class="snackbar__icon"
+    class="toast__icon"
     viewBox="0 0 329.26933 329"
     xmlns="http://www.w3.org/2000/svg"
   >

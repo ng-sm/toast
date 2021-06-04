@@ -8,29 +8,24 @@ $toast-background-warning: #e9b404;
 $toast-color-warning: #ffffff;
 $toast-background-error: #f04e31;
 $toast-color-error: #ffffff;
-$toast-margin: 12px;
-$toast-padding: 8px 16px;
-$toast-padding-right: 40px;
-$toast-radius: 4px;
-$toast-icon-padding: 12px;
-$toast-icon-size: 10px;
 
 :host {
   position: relative;
   display: block;
-  margin: var(--toast-margin, $toast-margin);;
-  padding: var(--toast-padding, $toast-padding);
-  border-radius: var(--toast-radius, $toast-radius);
+  margin: var(--toast-margin, 12px);
+  padding: var(--toast-padding, 8px 16px);
+  border-radius: var(--toast-radius, 4px);
+  box-shadow: var(--toast-box-shadow, 0 3px 6px rgba(0,0,0, .2));
 
   &.is-close-icon {
-    padding-right: var(--toast-padding-right, $toast-padding-right);
+    padding-right: var(--toast-padding-right, 40px);
   }
 
   &.default {
     background-color: var(--toast-background-default, $toast-background-default);
     color: var(--toast-color-default, $toast-color-default);
 
-    .snackbar__icon {
+    .toast__icon {
       fill: var(--toast-color-default, $toast-color-default);
     }
   }
@@ -39,7 +34,7 @@ $toast-icon-size: 10px;
     background-color: var(--toast-background-error, $toast-background-error);
     color: var(--toast-color-error, $toast-color-error);
 
-    .snackbar__icon {
+    .toast__icon {
       fill: var(--toast-color-error, $toast-color-error);
     }
   }
@@ -48,7 +43,7 @@ $toast-icon-size: 10px;
     background-color: var(--toast-background-warning, $toast-background-warning);
     color: var(--toast-color-warning, $toast-color-warning);
 
-    .snackbar__icon {
+    .toast__icon {
       fill: var(--toast-color-warning, $toast-color-warning);
     }
   }
@@ -57,7 +52,7 @@ $toast-icon-size: 10px;
     background-color: var(--toast-background-info, $toast-background-info);
     color: var(--toast-color-info, $toast-color-info);
 
-    .snackbar__icon {
+    .toast__icon {
       fill: var(--toast-color-info, $toast-color-info);
     }
   }
@@ -66,18 +61,18 @@ $toast-icon-size: 10px;
     background-color: var(--toast-background-success, $toast-background-success);
     color: var(--toast-color-success, $toast-color-success);
 
-    .snackbar__icon {
+    .toast__icon {
       fill: var(--toast-color-success, $toast-color-success);
     }
   }
 }
 
-.snackbar__close {
+.toast__close {
   position: absolute;
   top: 0;
   right: 0;
   display: flex;
-  padding: var(--toast-icon-padding, $toast-icon-padding);
+  padding: var(--toast-icon-padding, 12px);
   cursor: pointer;
   transition: 0.2s all ease-in-out;
 
@@ -86,7 +81,7 @@ $toast-icon-size: 10px;
   }
 }
 
-.snackbar__icon {
-  width: var(--toast-icon-size, $toast-icon-size);
+.toast__icon {
+  width: var(--toast-icon-size, 10px);
   fill: inherit;
 }

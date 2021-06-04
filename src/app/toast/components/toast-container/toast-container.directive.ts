@@ -3,6 +3,6 @@ import { Directive, ViewContainerRef } from '@angular/core';
 @Directive({
   selector: '[adHost]',
 })
-export class SnackbarContainerDirective {
+export class ToastContainerDirective {
   constructor(public viewContainerRef: ViewContainerRef) { }
 }
