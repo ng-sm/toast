@@ -49,7 +49,7 @@ export class SnackbarContainerComponent implements OnInit {
     }
   }
 
-  public onNewSnackbar(snackbar: SnackbarConfig): void {
+  public onNewSnackbar(snackbar: SnackbarConfig<unknown>): void {
     const viewContainerRef = this.adHost.viewContainerRef;
 
     return !viewContainerRef.length
@@ -57,12 +57,12 @@ export class SnackbarContainerComponent implements OnInit {
       : this.replaceComponent(snackbar);
   }
 
-  public replaceComponent(snackbar: SnackbarConfig): void {
+  public replaceComponent(snackbar: SnackbarConfig<unknown>): void {
     this.onClear();
     setTimeout(() => this.addComponent(snackbar), 200);
   }
 
-  public addComponent(config: SnackbarConfig): void {
+  public addComponent(config: SnackbarConfig<unknown>): void {
     const viewContainerRef = this.adHost.viewContainerRef;
     viewContainerRef.clear();
 

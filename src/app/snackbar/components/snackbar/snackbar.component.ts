@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, interval, of, Subject } from 'rxjs';
-import { delayWhen, filter, take, takeUntil, tap } from 'rxjs/operators';
+import { delayWhen, filter, take, takeUntil } from 'rxjs/operators';
 import { SnackbarConfig, SnackbarType } from '../../shared/snackbar.model';
 import { SnackbarService } from '../../shared/snackbar.service';
 
@@ -8,19 +8,17 @@ import { SnackbarService } from '../../shared/snackbar.service';
   selector: 'app-snackbar',
   templateUrl: './snackbar.component.html',
   styleUrls: ['./snackbar.component.scss'],
-  host: {
-    'class': 'snackbar',
-  }
+  host: { 'class': 'snackbar' }
 })
-export class SnackbarComponent implements OnInit, OnDestroy {
+export class SnackbarComponent<T = null> implements OnInit, OnDestroy {
   @Input() class = 'snackbar';
-  @Input() config!: SnackbarConfig;
+  @Input() config!: SnackbarConfig<T>;
 
   unsubscribe$ = new Subject();
 
   @HostBinding('class')
   get getClass(): string {
-    return `${this.class} ${this.config?.type || SnackbarType.ERROR}`;
+    return `${this.class} ${this.config?.type}`;
   }
 
   @HostBinding('class.is-close-icon')
@@ -31,7 +29,7 @@ export class SnackbarComponent implements OnInit, OnDestroy {
   constructor(private snackbarService: SnackbarService) {}
 
   ngOnInit(): void {
-    const snackbar$ = new BehaviorSubject<SnackbarConfig>(this.config);
+    const snackbar$ = new BehaviorSubject<SnackbarConfig<T>>(this.config);
 
     snackbar$
       .pipe(

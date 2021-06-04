@@ -3,7 +3,7 @@ import { Inject, ModuleWithProviders, NgModule, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SnackbarContainerComponent, SnackbarComponent, SnackbarContainerDirective } from './components';
 import { SnackbarService } from './shared/snackbar.service';
-import { SnackbarConfig } from './shared/snackbar.model';
+import { SnackbarConfig, SnackbarType } from './shared/snackbar.model';
 
 @NgModule({
   imports: [
@@ -41,7 +41,10 @@ export class SnackbarModule {
   ) {
     if (this.config) {
       this.snackbarService.config = {
-        ...this.snackbarService.config,
+        duration: 3000,
+        isCloseIconHidden: false,
+        type: SnackbarType.DEFAULT,
+        component: SnackbarComponent,
         ...this.config
       };
     }

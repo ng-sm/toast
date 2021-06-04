@@ -1,30 +1,24 @@
-import { Injectable, Type } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { SnackbarComponent } from '../components';
-import { SnackbarConfig, SnackbarType } from './snackbar.model';
+import { SnackbarConfig } from './snackbar.model';
 
 @Injectable()
 export class SnackbarService {
-  config: SnackbarConfig = {
-    duration: 3000,
-    isCloseIconHidden: false,
-    type: SnackbarType.ERROR,
-    component: SnackbarComponent,
-  };
+  config: SnackbarConfig = {};
 
-  public snackbar$ = new Subject<SnackbarConfig>();
-  public clear$ = new Subject<SnackbarConfig>();
+  public snackbar$ = new Subject<SnackbarConfig<unknown>>();
+  public clear$ = new Subject<SnackbarConfig<unknown>>();
 
   constructor() {}
 
-  public open(config: SnackbarConfig = {}): void {
+  public open<T>(config: SnackbarConfig<T> = {}): void {
     this.snackbar$.next({
       ...this.config,
       ...config
     });
   }
 
-  public close(config: SnackbarConfig = {}): void {
+  public close<T>(config: SnackbarConfig<T> = {}): void {
     this.clear$.next({
       ...this.config,
       ...config

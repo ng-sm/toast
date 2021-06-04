@@ -1,7 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --snackbar-info: #1e90ff;
-  --snackbar-success: #87c540;
-  --snackbar-warning: #e6cf4d;
-  --snackbar-error: #cf3f3f;
+  --toast-background-default: #383838;
+  --toast-color-default: #ffffff;
+  --toast-background-info: #62a5e7;
+  --toast-color-info: #ffffff;
+  --toast-background-success: #659e1b;
+  --toast-color-success: #ffffff;
+  --toast-background-warning: #e9b404;
+  --toast-color-warning: #ffffff;
+  --toast-background-error: #f04e31;
+  --toast-color-error: #ffffff;
+  --toast-margin: 12px;
+  --toast-padding: 8px 16px;
+  --toast-padding-right: 40px;
+  --toast-radius: 4px;
+  --toast-icon-padding: 12px;
+  --toast-icon-size: 10px;
 }

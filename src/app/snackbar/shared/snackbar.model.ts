@@ -1,16 +1,20 @@
-import { Type } from "@angular/core";
+import { Type } from '@angular/core';
 
-export enum SnackbarType {
-  WARNING = 'warning',
-  ERROR = 'error',
-  INFO = 'info',
-  SUCCESS = 'success',
-}
+export const SnackbarType = {
+  DEFAULT: 'default',
+  WARNING: 'warning',
+  ERROR: 'error',
+  INFO: 'info',
+  SUCCESS: 'success',
+} as const;
 
-export interface SnackbarConfig {
+export type SnackbarTypes = typeof SnackbarType[keyof typeof SnackbarType];
+
+export interface SnackbarConfig<T = null> {
   message?: string;
   component?: Type<any>;
-  type?: SnackbarType;
+  type?: SnackbarTypes;
   duration?: number;
   isCloseIconHidden?: boolean;
+  metadata?: T;
 }

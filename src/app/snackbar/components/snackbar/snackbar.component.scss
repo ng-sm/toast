@@ -1,28 +1,74 @@
-
+$toast-background-default: #383838;
+$toast-color-default: #ffffff;
+$toast-background-info: #62a5e7;
+$toast-color-info: #ffffff;
+$toast-background-success: #659e1b;
+$toast-color-success: #ffffff;
+$toast-background-warning: #e9b404;
+$toast-color-warning: #ffffff;
+$toast-background-error: #f04e31;
+$toast-color-error: #ffffff;
+$toast-margin: 12px;
+$toast-padding: 8px 16px;
+$toast-padding-right: 40px;
+$toast-radius: 4px;
+$toast-icon-padding: 12px;
+$toast-icon-size: 10px;
 
 :host {
   position: relative;
   display: block;
-  padding: 8px 16px;
+  margin: var(--toast-margin, $toast-margin);;
+  padding: var(--toast-padding, $toast-padding);
+  border-radius: var(--toast-radius, $toast-radius);
 
   &.is-close-icon {
-    padding-right: 40px;
+    padding-right: var(--toast-padding-right, $toast-padding-right);
+  }
+
+  &.default {
+    background-color: var(--toast-background-default, $toast-background-default);
+    color: var(--toast-color-default, $toast-color-default);
+
+    .snackbar__icon {
+      fill: var(--toast-color-default, $toast-color-default);
+    }
   }
 
   &.error {
-    background-color: var(--snackbar-error);
+    background-color: var(--toast-background-error, $toast-background-error);
+    color: var(--toast-color-error, $toast-color-error);
+
+    .snackbar__icon {
+      fill: var(--toast-color-error, $toast-color-error);
+    }
   }
 
   &.warning {
-    background-color: var(--snackbar-warning);
+    background-color: var(--toast-background-warning, $toast-background-warning);
+    color: var(--toast-color-warning, $toast-color-warning);
+
+    .snackbar__icon {
+      fill: var(--toast-color-warning, $toast-color-warning);
+    }
   }
 
   &.info {
-    background-color: var(--snackbar-info);
+    background-color: var(--toast-background-info, $toast-background-info);
+    color: var(--toast-color-info, $toast-color-info);
+
+    .snackbar__icon {
+      fill: var(--toast-color-info, $toast-color-info);
+    }
   }
 
   &.success {
-    background-color: var(--snackbar-success);
+    background-color: var(--toast-background-success, $toast-background-success);
+    color: var(--toast-color-success, $toast-color-success);
+
+    .snackbar__icon {
+      fill: var(--toast-color-success, $toast-color-success);
+    }
   }
 }
 
@@ -31,7 +77,7 @@
   top: 0;
   right: 0;
   display: flex;
-  padding: 12px;
+  padding: var(--toast-icon-padding, $toast-icon-padding);
   cursor: pointer;
   transition: 0.2s all ease-in-out;
 
@@ -41,6 +87,6 @@
 }
 
 .snackbar__icon {
-  width: 10px;
+  width: var(--toast-icon-size, $toast-icon-size);
   fill: inherit;
 }
