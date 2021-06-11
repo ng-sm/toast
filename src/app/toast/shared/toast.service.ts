@@ -1,21 +1,22 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ToastComponent } from '../components';
-import { ToastConfig, ToastType } from './toast.model';
+import { ToastConfig, ToastErrorHandler, ToastType } from './toast.model';
 
 @Injectable()
 export class ToastService {
+  public toast$ = new Subject<ToastConfig<unknown>>();
+  public clear$ = new Subject<ToastConfig<unknown>>();
+  public defaultErrorHandler?: ToastErrorHandler;
+
   public config: ToastConfig = {
     duration: 3000,
     isCloseIconHidden: false,
     type: ToastType.DEFAULT,
     component: ToastComponent,
+    errorHandler: (error: HttpErrorResponse): string => error?.message,
   };
-
-  public toast$ = new Subject<ToastConfig<unknown>>();
-  public clear$ = new Subject<ToastConfig<unknown>>();
-
-  constructor() {}
 
   public open<T>(config: ToastConfig<T> = {}): void {
     this.toast$.next({
@@ -29,5 +30,13 @@ export class ToastService {
       ...this.config,
       ...config
     });
+  }
+
+  public setErrorHandler(errorHandler: ToastErrorHandler): void {
+    this.config.errorHandler = errorHandler;
+  }
+
+  public clearErrorHandler(): void {
+    this.config.errorHandler = this.defaultErrorHandler;
   }
 }

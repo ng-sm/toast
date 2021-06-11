@@ -3,7 +3,9 @@ import { Inject, ModuleWithProviders, NgModule, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToastContainerComponent, ToastComponent, ToastContainerDirective } from './components';
 import { ToastService } from './shared/toast.service';
-import { ToastConfig, ToastType } from './shared/toast.model';
+import { ToastConfig } from './shared/toast.model';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ToastInterceptor } from './shared/toast.interceptor';
 
 @NgModule({
   imports: [
@@ -19,7 +21,12 @@ import { ToastConfig, ToastType } from './shared/toast.model';
     ToastContainerComponent,
   ],
   providers: [
-    ToastService
+    ToastService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ToastInterceptor,
+      multi: true,
+    },
   ]
 })
 export class ToastModule {
@@ -45,5 +52,7 @@ export class ToastModule {
         ...this.config
       };
     }
+
+    this.toastService.defaultErrorHandler = this.toastService.config.errorHandler;
   }
 }

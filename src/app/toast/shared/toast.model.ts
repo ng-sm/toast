@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Type } from '@angular/core';
 import { ToastComponent } from '../components/toast/toast.component';
 
@@ -12,6 +13,8 @@ export const ToastType = {
 export type ToastTypes = typeof ToastType[keyof typeof ToastType];
 
 export type ToastAnimationState = 'void' | 'hidden' | 'visible';
+
+export type ToastErrorHandler = (error: HttpErrorResponse) => string;
 export interface ToastConfig<T = null> {
   message?: string;
   component?: Type<ToastComponent<unknown>>;
@@ -19,4 +22,13 @@ export interface ToastConfig<T = null> {
   duration?: number;
   isCloseIconHidden?: boolean;
   metadata?: T;
+  errorHandler?: ToastErrorHandler;
 }
+
+export interface ToastHttpConfig {
+  toastInfo: string;
+  toastSuccess: string;
+  toastError: string;
+  toastErrorHandler: string;
+}
+
