@@ -36,7 +36,7 @@ export class ToastService {
     this.config.errorHandler = errorHandler;
   }
 
-  public clearErrorHandler(): void {
+  public setDefaultErrorHandler(): void {
     this.config.errorHandler = this.defaultErrorHandler;
   }
 }

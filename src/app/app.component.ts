@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, AfterViewInit, TemplateRef, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
-import { finalize, tap } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { catchError, finalize, tap } from 'rxjs/operators';
 import { ToastCustomComponent } from './toast-custom/toast-custom.component';
 import { ToastComponent } from './toast/components';
 import { ToastType } from './toast/shared/toast.model';
@@ -22,17 +22,13 @@ export class AppComponent implements AfterViewInit {
   ) {}
 
   test(): void {
-    this.toastService.setErrorHandler((error) => error.status + ' no i co');
     this.httpClient
       .get('https://pokeapi.co/api/v2/pokemon/dittos', {
         headers: {
           toastSuccess: 'No i pobrałem ditto',
-          toastErrorHandler: 'true',
-          toastInfo: 'Rozpoczynam pobieranie',
+          toastError: 'Rozpoczynam pobieranie',
         }
-      }).pipe(
-        finalize(() => this.toastService.clearErrorHandler())
-      ).subscribe();
+      }).subscribe();
   }
 
 
@@ -49,6 +45,10 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     // this.open('my new toast');
+    this.toastService.config = {
+      ...this.toastService.config,
+      duration: 0
+    }
     this.test()
   }
 
