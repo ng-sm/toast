@@ -15,6 +15,7 @@ export type ToastTypes = typeof ToastType[keyof typeof ToastType];
 export type ToastAnimationState = 'void' | 'hidden' | 'visible';
 
 export type ToastErrorHandler = (error: HttpErrorResponse) => string;
+
 export interface ToastConfig<T = null> {
   message?: string;
   component?: Type<ToastComponent<unknown>>;

@@ -8,7 +8,7 @@ import { ToastComponent } from '../toast/toast.component';
 import { ToastContainerDirective } from './toast-container.directive';
 
 @Component({
-  selector: 'app-toast-container',
+  selector: 'ngsm-toast-container',
   templateUrl: './toast-container.component.html',
   styleUrls: ['./toast-container.component.scss'],
   animations: [toastAnimations.toastState],

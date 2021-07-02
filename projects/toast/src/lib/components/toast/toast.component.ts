@@ -5,7 +5,7 @@ import { ToastConfig } from '../../shared/toast.model';
 import { ToastService } from '../../shared/toast.service';
 
 @Component({
-  selector: 'app-toast',
+  selector: 'ngsm-toast',
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.scss'],
   host: { 'class': 'toast' }

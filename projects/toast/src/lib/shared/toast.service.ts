@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ToastComponent } from '../components';
 import { ToastConfig, ToastErrorHandler, ToastType } from './toast.model';
 
 @Injectable()
@@ -14,7 +13,6 @@ export class ToastService {
     duration: 3000,
     isCloseIconHidden: false,
     type: ToastType.DEFAULT,
-    component: ToastComponent,
     errorHandler: (error: HttpErrorResponse): string => error?.message,
   };
 

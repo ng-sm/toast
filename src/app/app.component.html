@@ -1,24 +1,32 @@
-<app-toast-container></app-toast-container>
+<ngsm-toast-container></ngsm-toast-container>
 
-<br><br>
+<p>
+  <button (click)="open('Example message')">
+    Example message
+  </button>
+</p>
 
-<button (click)="open('11')">
-  add
-</button>
+<p>
+  <button (click)="addTemplate('Example template')">
+    Example custom template
+  </button>
+</p>
 
-<button (click)="addTemplate('22')">
-  add 2
-</button>
-
-<button (click)="close()">
-  clear
-</button>
-
-<button (click)="test()">
-  pobierz z API
-</button>
+<p>
+  <button (click)="testSimple()">
+    API connection (simple)
+  </button>
+</p>
 
 
-<button (click)="test2()">
-  pobierz z API 2
-</button>
+<p>
+  <button (click)="testErrorHandler()">
+    API connection (error handler)
+  </button>
+</p>
+
+<p>
+  <button (click)="close()">
+    CLOSE TOAST
+  </button>
+</p>

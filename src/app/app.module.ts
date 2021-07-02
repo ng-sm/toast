@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ToastModule } from './toast/toast.module';
+import { ToastModule } from '@ngsm/toast';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,9 @@ import { ToastModule } from './toast/toast.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    ToastModule
+    ToastModule.forRoot({
+      duration: 2000,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

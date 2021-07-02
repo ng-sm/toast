@@ -1,11 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, AfterViewInit, TemplateRef, ViewChild } from '@angular/core';
-import { throwError } from 'rxjs';
-import { catchError, finalize, tap } from 'rxjs/operators';
-import { ToastCustomComponent } from './toast-custom/toast-custom.component';
-import { ToastComponent } from './toast/components';
-import { ToastType } from './toast/shared/toast.model';
-import { ToastService } from './toast/shared/toast.service';
+import { Component, AfterViewInit } from '@angular/core';
+import { ToastCustomComponent, ToastMetada } from './toast-custom/toast-custom.component';
+import { ToastComponent, ToastType, ToastService } from '@ngsm/toast';
 
 @Component({
   selector: 'app-root',
@@ -13,43 +9,35 @@ import { ToastService } from './toast/shared/toast.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild('custom') Toast?: TemplateRef<any>;
-  title = 'toast-app';
-
   constructor(
     private toastService: ToastService,
     private httpClient: HttpClient,
-  ) {}
+  ) { }
 
-  test(): void {
+  testSimple(): void {
     this.httpClient
-      .get('https://pokeapi.co/api/v2/pokemon/dittos', {
+      .get('https://pokeapi.co/api/v2/pokemon/ditto-error', {
         headers: {
-          toastSuccess: 'No i pobrałem ditto',
-          toastError: 'Rozpoczynam pobieranie',
+          toastSuccess: 'Success! Example message.',
+          toastError: 'Error! Example message.',
         }
       }).subscribe();
   }
 
 
-  test2(): void {
+  testErrorHandler(): void {
     this.httpClient
-      .get('https://pokeapi.co/api/v2/pokemon/dittos', {
+      .get('https://pokeapi.co/api/v2/pokemon/ditto-error', {
         headers: {
-          toastSuccess: 'No i pobrałem ditto',
+          toastSuccess: 'Success! Example message.',
+          toastInfo: 'Error! Example message.',
           toastErrorHandler: 'true',
-          toastInfo: 'Rozpoczynam pobieranie',
         }
       }).subscribe();
   }
 
   ngAfterViewInit() {
-    // this.open('my new toast');
-    this.toastService.config = {
-      ...this.toastService.config,
-      duration: 0
-    }
-    this.test()
+    this.testSimple()
   }
 
   open(message: string): void {
@@ -76,7 +64,7 @@ export class AppComponent implements AfterViewInit {
 }
 
 @Component({
-  selector: 'app-toast-custom2',
-  template: '<div>My custom toast2</div>',
+  selector: 'app-toast-custom',
+  template: '<div>My custom toast {{ config?.metadata?.title }}</div>',
 })
-export class TestToastComponent extends ToastComponent {}
+export class TestToastComponent extends ToastComponent<ToastMetada> {}

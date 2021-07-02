@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ToastComponent } from '../toast/components';
+import { ToastComponent } from '@ngsm/toast';
 
 export interface ToastMetada {
   title: string;

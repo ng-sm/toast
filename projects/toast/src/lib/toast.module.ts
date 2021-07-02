@@ -46,13 +46,14 @@ export class ToastModule {
     @Optional() @Inject('config') private config: ToastConfig,
     private toastService: ToastService,
   ) {
+    this.toastService.config.component = ToastComponent;
+    this.toastService.defaultErrorHandler = this.toastService.config.errorHandler;
+
     if (this.config) {
       this.toastService.config = {
         ...this.toastService.config,
         ...this.config
       };
     }
-
-    this.toastService.defaultErrorHandler = this.toastService.config.errorHandler;
   }
 }

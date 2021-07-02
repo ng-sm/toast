@@ -2,8 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { ToastService } from './toast/shared/toast.service';
-import { ToastModule } from './toast/toast.module';
+import { ToastModule, ToastService } from '@ngsm/toast';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
