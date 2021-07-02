@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { ToastConfig, ToastErrorHandler } from './toast.model';
 import { ToastService } from './toast.service';

@@ -16,28 +16,28 @@ import { ToastHttpConfig, ToastType} from './toast.model';
 
 @Injectable()
 export class ToastInterceptor implements HttpInterceptor {
-  public readonly successKey = 'toastSuccess';
-  public readonly errorKey = 'toastError';
-  public readonly errorHandlerKey = 'toastErrorHandler';
-  public readonly infoKey = 'toastInfo';
+  public successKey = 'toastSuccess';
+  public errorKey = 'toastError';
+  public infoKey = 'toastInfo';
+  public errorHandlerKey = 'toastErrorHandler';
 
-  constructor(
-    private toastService: ToastService,
-  ) {}
+  constructor(private toastService: ToastService) {}
 
   getConfig(request: HttpRequest<unknown>): ToastHttpConfig {
     return {
       toastSuccess: request.headers.get(this.successKey) || '',
       toastError: request.headers.get(this.errorKey) || '',
-      toastErrorHandler: request.headers.get(this.errorHandlerKey) || '',
       toastInfo: request.headers.get(this.infoKey) || '',
+      toastErrorHandler: request.headers.get(this.errorHandlerKey) === 'true',
     };
   }
 
   deleteHeaders(request: HttpRequest<unknown>): HttpHeaders {
     return request.headers
       .delete(this.successKey)
-      .delete(this.errorKey);
+      .delete(this.errorKey)
+      .delete(this.infoKey)
+      .delete(this.errorHandlerKey);
   }
 
   parseRequest(request: HttpRequest<unknown>): HttpRequest<unknown>  {
@@ -56,7 +56,7 @@ export class ToastInterceptor implements HttpInterceptor {
   }
 
   handleError(error: HttpErrorResponse, httpConfig: ToastHttpConfig): Observable<never> {
-    if (!!httpConfig.toastError || !!httpConfig.toastErrorHandler) {
+    if (!!httpConfig.toastError || httpConfig.toastErrorHandler) {
       const message = httpConfig.toastError || this.toastService.config?.errorHandler?.(error);
 
       this.toastService.open({

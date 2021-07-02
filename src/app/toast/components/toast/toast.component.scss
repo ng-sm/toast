@@ -69,12 +69,13 @@ $toast-color-error: #ffffff;
 
 .toast__close {
   position: absolute;
-  top: 0;
+  top: 50%;
   right: 0;
   display: flex;
-  padding: var(--toast-icon-padding, 12px);
-  cursor: pointer;
+  padding: var(--toast-icon-padding, 16px);
+  transform: translateY(-50%);
   transition: 0.2s all ease-in-out;
+  cursor: pointer;
 
   &:hover {
     opacity: .6;

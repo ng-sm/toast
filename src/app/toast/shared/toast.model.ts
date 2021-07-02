@@ -29,6 +29,6 @@ export interface ToastHttpConfig {
   toastInfo: string;
   toastSuccess: string;
   toastError: string;
-  toastErrorHandler: string;
+  toastErrorHandler: boolean;
 }
 
